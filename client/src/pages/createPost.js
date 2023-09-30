@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import axios from "axios";
 
@@ -14,7 +15,7 @@ export const NewPost = () => {
             caption: cap,
             img: img
         };
-        const response = await axios.post('http://localhost:5000/postit', data)
+        const response = await axios.post("http://localhost:5000"+'/postit', data)
         // .then((response) => {console.log(1)
         //     // Handle the response as needed
         // })
@@ -23,7 +24,7 @@ export const NewPost = () => {
         //     // Handle errors as needed
         // });
         var dataa = await response;
-        if(dataa.data == 'Posted'){
+        if(dataa.data === 'Posted'){
             window.location.href = '/';
         }
         

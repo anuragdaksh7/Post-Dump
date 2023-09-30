@@ -73,3 +73,8 @@ app.post('/postit', (req, res) => {
     });
     res.send("Posted");
 });
+
+
+app.get("/health", (req, res) => {
+    res.send("Hii");
+})

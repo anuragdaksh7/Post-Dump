@@ -1,3 +1,4 @@
+
 import { Post } from "../components/Post";
 import { useState, useEffect } from "react";
 import axios from 'axios';
@@ -18,7 +19,7 @@ export const LandingPage = () => {
         // setImages(data);
         // return data;
 
-        axios.get('http://localhost:5000/')
+        axios.get("http://localhost:5000"+'/')
         .then((response) => {
         // Handle the received buffer (response.data)
             setImages(response.data.imagepage.items.reverse());
@@ -26,14 +27,6 @@ export const LandingPage = () => {
         .catch((error) => {
             console.error('Error fetching buffer:', error);
         });
-    }
-
-    const getDataLink = (data) =>{
-        const integerArray = data;
-        const uint8Array = new Uint8Array(integerArray);
-        const blob = new Blob([uint8Array], { type: 'image/png' }); // Specify the appropriate MIME type for your image (e.g., 'image/jpeg', 'image/png', etc.)
-        const dataURL = URL.createObjectURL(blob);
-        return dataURL;
     }
 
 
@@ -54,7 +47,7 @@ export const LandingPage = () => {
                 // console.log(value, index, arr);
                 // return <Task name={value.task} completed={value.done} index={index} arr={arr} set = {setTasks}/>;
                 // console.log(value);
-                return <Post id={index} src={value.img.data} likes="1" caption={value.caption} comments={Obj} liked="false" />
+                return <Post key={index} src={value.img.data} likes="1" caption={value.caption} comments={Obj} liked="false" />
             })}
         </>
     )
