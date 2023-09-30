@@ -15,7 +15,7 @@ export const NewPost = () => {
             caption: cap,
             img: img
         };
-        const response = await axios.post("http://localhost:5000"+'/postit', data)
+        const response = await axios.post("https://post-dump.onrender.com"+'/postit', data)
         // .then((response) => {console.log(1)
         //     // Handle the response as needed
         // })

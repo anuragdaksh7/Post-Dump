@@ -19,7 +19,7 @@ export const LandingPage = () => {
         // setImages(data);
         // return data;
 
-        axios.get("http://localhost:5000"+'/')
+        axios.get("https://post-dump.onrender.com"+'/')
         .then((response) => {
         // Handle the received buffer (response.data)
             setImages(response.data.imagepage.items.reverse());
