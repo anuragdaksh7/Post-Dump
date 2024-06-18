@@ -23,7 +23,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://post-dump-xi.vercel.app/"
+      "https://post-dump-xi.vercel.app"
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
