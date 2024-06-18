@@ -20,7 +20,7 @@ const Posts = () => {
 
   const fetchAllPosts = async () => {
     if (!process.env.NEXT_PUBLIC_BACKEND_URL) return
-    const response = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL+"/v1/posts")
+    const response = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL+"/v1/posts/")
     const data = response.data;
     // console.log(data.data)
     if (data.status === 200) {
@@ -36,7 +36,7 @@ const Posts = () => {
   },[])
 
   return (
-    <div className="flex justify-center pt-24 bg-popover h-[100lvh]">
+    <div className="flex justify-center pt-24 bg-popover min-h-[100lvh]">
     <div className=" font-mono flex flex-col justify-center gap-8">
       {
         posts&& posts.map((post, idx) => {
