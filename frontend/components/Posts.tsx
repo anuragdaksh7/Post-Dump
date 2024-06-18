@@ -36,7 +36,7 @@ const Posts = () => {
   },[])
 
   return (
-    <div className="flex justify-center pt-24 bg-popover">
+    <div className="flex justify-center pt-24 bg-popover h-[100lvh]">
     <div className=" font-mono flex flex-col justify-center gap-8">
       {
         posts&& posts.map((post, idx) => {
