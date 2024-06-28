@@ -4,6 +4,7 @@ import logger from "../../helpers/winston/dev_logger";
 import AddPost from "../../helpers/posts/addPost";
 import GetSinglePost from "../../helpers/posts/getSinglePost";
 import GetAllPosts from "../../helpers/posts/getAllPosts";
+import DBClient from "../../prisma";
 
 const addPost = async (req: Request, res: Response) => {
   try {
@@ -13,7 +14,7 @@ const addPost = async (req: Request, res: Response) => {
 
     const caption = req.body.caption;
 
-    const [newPost, newPostErr] = await AddPost({image: req.file.filename, caption: caption})
+    const [newPost, newPostErr] = await DBClient.PostsSchemaClient.createPost({image: req.file.filename, caption: caption})
     if (newPostErr) {
       logger.error("Error saving post: "+ newPostErr.message, newPostErr);
     }
@@ -28,7 +29,7 @@ const getSinglePost = async (req: Request, res: Response) => {
   try {
     const postId = req.params.postId;
     if (postId.length!=24) return RESPONSES.badRequestResponse(res,"invalid post id")
-    const [post, postErr] = await GetSinglePost({ id: postId })
+    const [post, postErr] = await DBClient.PostsSchemaClient.getPost({id:postId})
     if (postErr) {
       return RESPONSES.internalServerError(res, postErr.message, postErr)
     }
@@ -42,7 +43,7 @@ const getSinglePost = async (req: Request, res: Response) => {
 
 const getAllPosts = async (req: Request, res: Response) => {
   try {
-    const [posts, postsErr] = await GetAllPosts();
+    const [posts, postsErr] = await DBClient.PostsSchemaClient.getPosts();
     if (postsErr) {
       return RESPONSES.internalServerError(res, postsErr.message, postsErr)
     }
